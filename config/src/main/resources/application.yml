@@ -1,0 +1,12 @@
+server:
+  port: 8191
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/usechesilva123/configuration-ubacademico
+          username: usechesilva@hotmail.es
+          password: Legday420
+          search-paths:
+           - '*service'
