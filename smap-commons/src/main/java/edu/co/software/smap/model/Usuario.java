@@ -15,31 +15,45 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario {
-  
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
- 
-    private String nombre_completo;
-    @Column(unique = true)
-    private String documento;
-    @Column(unique = true)
-    private String telefono;
-    @Column(unique = true)
-    private String email;
-    private String tipo_documento;
-    private String password;
-    private boolean enabled;
- 
-    @ManyToMany
-    @JsonIgnore
-    @JoinTable( 
-        name = "users_roles", 
-        joinColumns = @JoinColumn(
-          name = "user_id", referencedColumnName = "id"), 
-        inverseJoinColumns = @JoinColumn(
-          name = "role_id", referencedColumnName = "id")) 
-    private Collection<Role> roles;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
+	private String nombre_completo;
+	@Column(unique = true)
+	private String documento;
+	@Column(unique = true)
+	private String telefono;
+	@Column(unique = true)
+	private String email;
+	private String tipo_documento;
+	private String password;
+	private boolean enabled;
+
+	@ManyToMany
+	@JsonIgnore
+	@JoinTable( 
+			name = "users_roles", 
+			joinColumns = @JoinColumn(
+					name = "user_id", referencedColumnName = "id"), 
+			inverseJoinColumns = @JoinColumn(
+					name = "role_id", referencedColumnName = "id")) 
+	private Collection<Role> roles;
+
+	public Usuario() {}
+
+	public Usuario(String nombre_completo, String documento, String telefono, String email, String tipo_documento,
+			String password, boolean enabled) {
+		super();
+		this.nombre_completo = nombre_completo;
+		this.documento = documento;
+		this.telefono = telefono;
+		this.email = email;
+		this.tipo_documento = tipo_documento;
+		this.password = password;
+		this.enabled = enabled;
+	}
 
 	/**
 	 * @return the id
@@ -167,5 +181,5 @@ public class Usuario {
 		this.roles = roles;
 	}
 
-    
+
 }

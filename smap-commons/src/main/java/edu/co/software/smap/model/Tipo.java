@@ -19,7 +19,7 @@ public class Tipo implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String codigo;
+    private String name;
 
 	/**
 	 * @return the id
@@ -38,15 +38,15 @@ public class Tipo implements Serializable{
 	/**
 	 * @return the codigo
 	 */
-	public String getCodigo() {
-		return codigo;
+	public String getName() {
+		return name;
 	}
 
 	/**
 	 * @param codigo the codigo to set
 	 */
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setName(String name) {
+		this.name = name;
 	}
     
 

@@ -9,6 +9,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,8 +27,9 @@ public class Radicado implements Serializable{
 	private static final long serialVersionUID = 2202021101022968811L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Integer numero_radicado;
 	Date fecha;
 	String comentario;
@@ -47,7 +49,13 @@ public class Radicado implements Serializable{
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "radicado")
 	public Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
+	
+	
 
+	public Radicado() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * @return the id
 	 */

@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 		.authorizeRequests()
 		.antMatchers("/login").permitAll()
-		.antMatchers("/uploadFile").hasAuthority("READ_PRIVILEGE")
+		.antMatchers("/registrarRadicado").permitAll()
 		.antMatchers("/downloadFile/**").hasAnyAuthority("WRITE_PRIVILEGE","READ_PRIVILEGE")
 		.antMatchers("/admin/**").hasAnyAuthority("WRITE_PRIVILEGE")
 		.and().sessionManagement()

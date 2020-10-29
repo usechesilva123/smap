@@ -23,10 +23,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 	RoleRepository roleRepository;
 
 	@Override
-	public Usuario save(Usuario usuario) {
+	public Usuario saveAdmin(Usuario usuario) {
 		// TODO Auto-generated method stub
 		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(roleRepository.findByName("ROLE_ADMIN"));
+		usuario.setRoles(roles);
+		usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+		return usuarioRepository.save(usuario);
+	}
+
+	@Override
+	public Usuario saveClient(Usuario usuario) {
+		// TODO Auto-generated method stub
+		ArrayList<Role> roles = new ArrayList<Role>();
+		roles.add(roleRepository.findByName("ROLE_CLIENT"));
 		usuario.setRoles(roles);
 		usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
 		return usuarioRepository.save(usuario);

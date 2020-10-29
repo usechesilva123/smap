@@ -19,7 +19,7 @@ public class Estado implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String codigo;
+    private String name;
 
 	/**
 	 * @return the id
@@ -36,17 +36,17 @@ public class Estado implements Serializable{
 	}
 
 	/**
-	 * @return the codigo
+	 * @return the name
 	 */
-	public String getCodigo() {
-		return codigo;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param codigo the codigo to set
+	 * @param name the name to set
 	 */
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setName(String name) {
+		this.name = name;
 	}
     
 

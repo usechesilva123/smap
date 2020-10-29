@@ -9,7 +9,9 @@ import edu.co.software.smap.model.Usuario;
 @Service
 public interface UsuarioService {
 	
-	Usuario save(Usuario usuario);
+	Usuario saveAdmin(Usuario usuario);
+	
+	Usuario saveClient(Usuario usuario);
 
 	List<Usuario> fetch();
 
