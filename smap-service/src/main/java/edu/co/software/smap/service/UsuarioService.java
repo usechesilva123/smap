@@ -1,5 +1,7 @@
 package edu.co.software.smap.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import edu.co.software.smap.model.Usuario;
@@ -9,7 +11,7 @@ public interface UsuarioService {
 	
 	Usuario save(Usuario usuario);
 
-	Usuario fetch(Integer id);
+	List<Usuario> fetch();
 
 	Usuario findByUser(String user);
 	
