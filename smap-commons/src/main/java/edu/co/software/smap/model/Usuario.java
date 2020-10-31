@@ -22,12 +22,15 @@ public class Usuario {
 
 	private String nombre_completo;
 	@Column(unique = true)
+	@JsonIgnore
 	private String documento;
 	@Column(unique = true)
 	private String telefono;
 	@Column(unique = true)
 	private String email;
+	@JsonIgnore
 	private String tipo_documento;
+	@JsonIgnore
 	private String password;
 	private boolean enabled;
 

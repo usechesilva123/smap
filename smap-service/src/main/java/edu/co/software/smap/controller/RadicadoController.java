@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import edu.co.software.smap.model.UploadFileResponse;
 import edu.co.software.smap.model.Usuario;
 import edu.co.software.smap.model.Radicado;
 import edu.co.software.smap.service.EstadoService;
@@ -45,7 +44,7 @@ public class RadicadoController {
 	private UsuarioService usuarioService;
 
 	@PostMapping("/registrarRadicado")
-	public UploadFileResponse registrarRadicado(@RequestParam("file") MultipartFile file,
+	public Radicado registrarRadicado(@RequestParam("file") MultipartFile file,
 			@RequestParam("comentario") String comment, @RequestParam("tipo") String tipo,
 			@RequestParam("estado") String estado, @RequestParam("documento") String documento,
 			@RequestParam("email") String email, @RequestParam("telefono") String telefono,
@@ -65,8 +64,9 @@ public class RadicadoController {
 		radicado.setFecha(new Date(System.currentTimeMillis()));
 		radicado.setUsuario(user);
 		radicado = radicadoService.saveRadicado(radicado);
+		radicado.setNumero_radicado((int)radicado.getId()+9900);
 
-		String fileName = fileStorageService.storeFile(file, radicado.getId()+".pdf");
+		String fileName = fileStorageService.storeFile(file, radicado.getNumero_radicado()+".pdf");
 
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
 				.path("/downloadFile/")
@@ -74,13 +74,13 @@ public class RadicadoController {
 				.toUriString();
 
 
-		radicado.setNumero_radicado((int)radicado.getId()+9900);
 		radicado.setAnexo(fileDownloadUri);
 		
 		radicado = radicadoService.saveRadicado(radicado);
 
-		return new UploadFileResponse(fileName, fileDownloadUri,
-				file.getContentType(), file.getSize());
+		return radicado;
+//		return new UploadFileResponse(fileName, fileDownloadUri,
+//				file.getContentType(), file.getSize());
 	}
 
 	@GetMapping("/downloadFile/{fileName:.+}")
@@ -106,4 +106,5 @@ public class RadicadoController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(resource);
 	}
+	
 }

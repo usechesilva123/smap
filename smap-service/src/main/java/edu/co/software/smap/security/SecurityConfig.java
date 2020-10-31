@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/registrarRadicado").permitAll()
 		.antMatchers("/downloadFile/**").hasAnyAuthority("WRITE_PRIVILEGE","READ_PRIVILEGE")
 		.antMatchers("/admin/**").hasAnyAuthority("WRITE_PRIVILEGE")
+		.antMatchers("/client/**").hasAnyAuthority("READ_PRIVILEGE")
 		.and().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

@@ -4,25 +4,35 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table
 public class Respuesta {
 
 	@Id
-	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 	
 	String justificacion;
 	
 	@ManyToOne
 	@JoinColumn(name="radicado_id", referencedColumnName = "id")
+	@JsonBackReference
 	Radicado radicado;
+	
+	@ManyToOne
+	@JoinColumn(name="usuario_id", referencedColumnName = "id")
+	Usuario usuario;
 
+	@ManyToOne
 	@JoinColumn(name="estado_id", referencedColumnName = "id")
 	Estado estado;
 	
@@ -71,6 +81,20 @@ public class Respuesta {
 	}
 
 	/**
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
 	 * @return the estado
 	 */
 	public Estado getEstado() {
@@ -97,4 +121,5 @@ public class Respuesta {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+
 }

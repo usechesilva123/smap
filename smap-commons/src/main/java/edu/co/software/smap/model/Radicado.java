@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table
 @Embeddable
@@ -47,7 +49,8 @@ public class Radicado implements Serializable{
 	@JoinColumn(name="tipo_id", referencedColumnName = "id")
 	Tipo tipo;	
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "radicado")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "radicado")
+	@JsonManagedReference
 	public Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
 	
 	

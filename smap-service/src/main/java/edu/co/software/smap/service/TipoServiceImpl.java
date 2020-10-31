@@ -1,13 +1,9 @@
 package edu.co.software.smap.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.co.software.smap.model.Radicado;
 import edu.co.software.smap.model.Tipo;
-import edu.co.software.smap.repository.RadicadoRepository;
 import edu.co.software.smap.repository.TipoRepository;
 
 @Service

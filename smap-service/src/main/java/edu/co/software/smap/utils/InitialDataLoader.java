@@ -1,5 +1,6 @@
 package edu.co.software.smap.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -7,14 +8,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.co.software.smap.model.Privilege;
 import edu.co.software.smap.model.Role;
+import edu.co.software.smap.model.Usuario;
 import edu.co.software.smap.repository.PrivilegeRepository;
 import edu.co.software.smap.repository.RoleRepository;
+import edu.co.software.smap.repository.UsuarioRepository;
+import edu.co.software.smap.security.BCryptPasswordEncoder;
 
 @Component
 public class InitialDataLoader implements
@@ -28,7 +33,10 @@ ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private PrivilegeRepository privilegeRepository;
 
-//	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	@Autowired
+	private UsuarioRepository userRepository;
+
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
 	@Transactional
@@ -46,10 +54,18 @@ ApplicationListener<ContextRefreshedEvent> {
 		createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
 		createRoleIfNotFound("ROLE_CLIENT", Arrays.asList(readPrivilege));
 
-//		Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-//		Role clientRole = roleRepository.findByName("ROLE_CLIENT");
-
-
+		Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+		Role clientRole = roleRepository.findByName("ROLE_CLIENT");
+		if(userRepository.findByUser("1018496318")==null) {
+			Usuario user = new Usuario("DIEGO USECHE", "1018496318", "3197521741", "usechesilva@hotmail.es"
+					, "CC", passwordEncoder.encode("admin"), true);
+			ArrayList<Role> roles = new ArrayList<Role>();
+			user.setId(1);
+			roles.add(adminRole);
+			roles.add(clientRole);
+			user.setRoles(roles);
+			userRepository.save(user);
+		}
 		alreadySetup = true;
 	}
 

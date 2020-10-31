@@ -15,6 +15,8 @@ public interface RadicadoService {
 	
 	Radicado findById(Integer id);
 	
+	List<Radicado> findByUser(Integer id);
+	
 	void delete(Radicado usuario);
 
 }

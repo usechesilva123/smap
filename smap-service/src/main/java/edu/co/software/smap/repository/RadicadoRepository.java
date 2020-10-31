@@ -1,5 +1,6 @@
 package edu.co.software.smap.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,7 @@ public interface RadicadoRepository extends JpaRepository<Radicado, Integer> {
 
 	@Query(value = "SELECT * FROM RADICADO WHERE ID = ?1", nativeQuery = true)
 	Optional<Radicado> findById(Integer id);
+	
+	@Query(value = "SELECT * FROM RADICADO WHERE USUARIO_ID = ?1", nativeQuery = true)
+	List<Radicado> findByUser(Integer id);
 }

@@ -27,6 +27,12 @@ public class RadicadoServiceImpl implements RadicadoService{
 	}
 
 	@Override
+	public List<Radicado> findByUser(Integer id) {
+		// TODO Auto-generated method stub
+		return radicadoRepository.findByUser(id);
+	}
+
+	@Override
 	public void delete(Radicado usuario) {
 		// TODO Auto-generated method stub
 		radicadoRepository.delete(usuario);
