@@ -13,11 +13,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.co.software.smap.model.Estado;
 import edu.co.software.smap.model.Privilege;
 import edu.co.software.smap.model.Role;
+import edu.co.software.smap.model.Tipo;
 import edu.co.software.smap.model.Usuario;
+import edu.co.software.smap.repository.EstadoRepository;
 import edu.co.software.smap.repository.PrivilegeRepository;
 import edu.co.software.smap.repository.RoleRepository;
+import edu.co.software.smap.repository.TipoRepository;
 import edu.co.software.smap.repository.UsuarioRepository;
 import edu.co.software.smap.security.BCryptPasswordEncoder;
 
@@ -36,6 +40,13 @@ ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private UsuarioRepository userRepository;
 
+	@Autowired
+	private EstadoRepository estadoRepository;
+
+	@Autowired
+	private TipoRepository tipoRepository;
+
+	
 	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
@@ -53,6 +64,16 @@ ApplicationListener<ContextRefreshedEvent> {
 				readPrivilege, writePrivilege);        
 		createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
 		createRoleIfNotFound("ROLE_CLIENT", Arrays.asList(readPrivilege));
+
+		createEstadoIfNotFound("PENDIENTE");
+		createEstadoIfNotFound("RESUELTO");
+		createEstadoIfNotFound("REVISION");
+		createEstadoIfNotFound("DESCARTADO");
+
+		createTipoIfNotFound("PETICION");
+		createTipoIfNotFound("QUEJA");
+		createTipoIfNotFound("RECLAMO");
+		createTipoIfNotFound("SUGERENCIA");
 
 		Role adminRole = roleRepository.findByName("ROLE_ADMIN");
 		Role clientRole = roleRepository.findByName("ROLE_CLIENT");
@@ -78,6 +99,28 @@ ApplicationListener<ContextRefreshedEvent> {
 			privilegeRepository.save(privilege);
 		}
 		return privilege;
+	}
+
+	@Transactional
+	private Tipo createTipoIfNotFound(String name) {
+
+		Tipo tipo = tipoRepository.findByName(name);
+		if (tipo == null) {
+			tipo = new Tipo(name);
+			tipoRepository.save(tipo);
+		}
+		return tipo;
+	}
+
+	@Transactional
+	private Estado createEstadoIfNotFound(String name) {
+
+		Estado estado = estadoRepository.findByName(name);
+		if (estado == null) {
+			estado = new Estado(name);
+			estadoRepository.save(estado);
+		}
+		return estado;
 	}
 
 	@Transactional

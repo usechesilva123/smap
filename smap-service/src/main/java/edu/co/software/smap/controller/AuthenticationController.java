@@ -1,5 +1,7 @@
 package edu.co.software.smap.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +21,8 @@ import edu.co.software.smap.utils.JwtUtil;
 
 @RestController
 public class AuthenticationController {
+
+	private static final Logger log = (Logger) LoggerFactory.getLogger(AuthenticationController.class);
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -35,7 +39,7 @@ public class AuthenticationController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> login(@RequestBody AuthenticationRequest usuario) throws Exception{
 		try {
-			System.out.println(usuario.getUsername());
+			log.info(usuario.getUsername() + "   -   " + usuario.getPassword());
 		authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword())
 				);

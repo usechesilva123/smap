@@ -21,6 +21,15 @@ public class Tipo implements Serializable{
     
     private String name;
 
+	public Tipo(String name) {
+		super();
+		this.name = name;
+	}
+	
+	public Tipo() {
+		super();
+	}
+
 	/**
 	 * @return the id
 	 */

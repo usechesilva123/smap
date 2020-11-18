@@ -21,6 +21,15 @@ public class Estado implements Serializable{
     
     private String name;
 
+	public Estado(String name) {
+		super();
+		this.name = name;
+	}
+	
+	public Estado() {
+		super();
+	}
+
 	/**
 	 * @return the id
 	 */
