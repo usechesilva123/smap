@@ -28,13 +28,10 @@ public class ClienteController {
 	private JwtUtil jwtUtil;
 
 	@GetMapping("/radicado")
-	public List<Radicado> radicados(HttpServletRequest request){
-		
-		final String authorizationHeader = request.getHeader("Authorization");
-		
+	public List<Radicado> radicados(HttpServletRequest request){		
+		final String authorizationHeader = request.getHeader("Authorization");		
 		String username = null;
-		String jwt = null;
-		
+		String jwt = null;		
 		if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
 			jwt = authorizationHeader.substring(7);
 			username = jwtUtil.extractUsername(jwt);

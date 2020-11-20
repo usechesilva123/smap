@@ -37,7 +37,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(roleRepository.findByName("ROLE_CLIENT"));
 		usuario.setRoles(roles);
-		usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
 		return usuarioRepository.save(usuario);
 	}
 
