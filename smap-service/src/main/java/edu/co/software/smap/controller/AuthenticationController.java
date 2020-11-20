@@ -58,7 +58,7 @@ public class AuthenticationController {
 		Integer id = user.getId();
 		String role = (user.getRoles()).iterator().next().getName();
 		
-		return ResponseEntity.ok(new AuthenticationResponse(jwt, role , id));
+		return ResponseEntity.ok(new AuthenticationResponse(jwt, role , user));
 	}
 
 }

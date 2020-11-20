@@ -4,13 +4,13 @@ public class AuthenticationResponse {
 	
 	private final String jwt;
 	private final String role;
-	private final Integer id;
+	private final Usuario usuario;
 	
-	public AuthenticationResponse(String jwt, String role, Integer id) {
+	public AuthenticationResponse(String jwt, String role, Usuario user) {
 		super();
 		this.jwt = jwt;
 		this.role = role;
-		this.id = id;
+		this.usuario = user;
 	}
 	
 	public String getJwt() {
@@ -19,8 +19,8 @@ public class AuthenticationResponse {
 	public String getRole() {
 		return role;
 	}
-	public Integer getId() {
-		return id;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
 }
