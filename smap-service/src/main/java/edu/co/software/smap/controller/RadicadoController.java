@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.Date;
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class RadicadoController {
 
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(RadicadoController.class);
