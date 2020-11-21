@@ -20,15 +20,18 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
+	@Column(nullable = false)
 	private String nombre_completo;
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String documento;
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String telefono;
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String email;
+	@Column(nullable = false)
 	private String tipo_documento;
 	@JsonIgnore
+	@Column(nullable = false)
 	private String password;
 	private boolean enabled;
 

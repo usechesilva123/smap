@@ -46,6 +46,9 @@ public class AdministradorController {
 	
 	@RequestMapping(value = "/responder", method = RequestMethod.POST)
 	public void responder(@RequestBody Respuesta respuesta) {
+		Radicado radicado = respuesta.getRadicado();
+		radicado.setEstado(respuesta.getEstado());
+		radicadoService.saveRadicado(radicado);
 		respuestaService.save(respuesta);
 	}
 

@@ -84,7 +84,6 @@ public class RadicadoController {
 			user = new Usuario(nombre_completo, documento, telefono, email, tipo_documento, password, true);
 			pss = PasswordGenerator.generateRandomPassword(PASS_LENGHT);
 			user.setPassword(pss);
-			usuarioService.saveClient(user);
 
 			MimeMessage message = sender.createMimeMessage();
 
@@ -93,11 +92,13 @@ public class RadicadoController {
 			helper.setTo(email);
 			helper.setSubject("Gracias por ayudarnos a mejorar");
 			// Retome
-			user.setPassword(pss);
 			String text = prepareRegistrationEmailText(user);
 
 			// use the true flag to indicate the text included is HTML
 			helper.setText(text, true);
+			
+
+			usuarioService.saveClient(user);
 
 			sender.send(message);
 		}

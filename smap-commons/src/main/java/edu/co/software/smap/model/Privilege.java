@@ -20,6 +20,7 @@ public class Privilege {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(nullable = false)
 	private String name;
 
 	@ManyToMany(mappedBy = "privileges")

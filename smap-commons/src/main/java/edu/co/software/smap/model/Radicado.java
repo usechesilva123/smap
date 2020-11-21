@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,21 +33,25 @@ public class Radicado implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false)
 	Integer numero_radicado;
+	@Column(nullable = false)
 	Date fecha;
+	@Column(nullable = false)
 	String comentario;
+	@Column(nullable = false)
 	String anexo;
 	
 	@ManyToOne
-	@JoinColumn(name="usuario_id", referencedColumnName = "id")
+	@JoinColumn(name="usuario_id", referencedColumnName = "id", nullable = false)
 	Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name="estado_id", referencedColumnName = "id")
+	@JoinColumn(name="estado_id", referencedColumnName = "id", nullable = false)
 	Estado estado;
 	
 	@ManyToOne
-	@JoinColumn(name="tipo_id", referencedColumnName = "id")
+	@JoinColumn(name="tipo_id", referencedColumnName = "id", nullable = false)
 	Tipo tipo;	
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "radicado")

@@ -20,22 +20,24 @@ public class Respuesta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
-	
+
+	@Column(nullable = false)
 	String justificacion;
 	
 	@ManyToOne
-	@JoinColumn(name="radicado_id", referencedColumnName = "id")
+	@JoinColumn(name="radicado_id", referencedColumnName = "id", nullable = false)
 	@JsonBackReference
 	Radicado radicado;
 	
 	@ManyToOne
-	@JoinColumn(name="usuario_id", referencedColumnName = "id")
+	@JoinColumn(name="usuario_id", referencedColumnName = "id", nullable = false)
 	Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn(name="estado_id", referencedColumnName = "id")
+	@JoinColumn(name="estado_id", referencedColumnName = "id", nullable = false)
 	Estado estado;
-	
+
+	@Column(nullable = false)
 	Date fecha;
 
 	/**
