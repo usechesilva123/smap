@@ -1,8 +1,14 @@
 package edu.co.software.smap.service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.DatatypeConverter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +20,8 @@ import edu.co.software.smap.repository.RoleRepository;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
+
+	private static final Logger log = (Logger) LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
 	@Autowired
 	UsuarioRepository usuarioRepository;
@@ -37,6 +45,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(roleRepository.findByName("ROLE_CLIENT"));
 		usuario.setRoles(roles);
+		MessageDigest md5;
+		try {
+			md5 = MessageDigest.getInstance("MD5");
+			md5.update(usuario.getPassword().getBytes());
+		 
+		    byte[] digest = md5.digest();
+		    usuario.setPassword(DatatypeConverter
+		      .printHexBinary(digest).toLowerCase());
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return usuarioRepository.save(usuario);
 	}
 
