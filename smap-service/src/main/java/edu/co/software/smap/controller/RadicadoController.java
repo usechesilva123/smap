@@ -110,6 +110,8 @@ public class RadicadoController {
 		radicado.setEstado(estadoService.findByName(estado));
 		radicado.setFecha(new Date(System.currentTimeMillis()));
 		radicado.setUsuario(user);
+		radicado.setAnexo("");
+		radicado.setNumero_radicado(0);
 		//Para obtener el id de radicado válido
 		radicado = radicadoService.saveRadicado(radicado);
 		radicado.setNumero_radicado((int)radicado.getId()+9900);
