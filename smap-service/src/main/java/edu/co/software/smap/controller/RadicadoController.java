@@ -100,7 +100,7 @@ public class RadicadoController {
 			// use the true flag to indicate the text included is HTML
 			helper.setText(text, true);
 
-			sender.send(message);
+//			sender.send(message);
 		}
 
 
