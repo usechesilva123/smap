@@ -62,6 +62,7 @@ public class RadicadoController {
 	public String prepareRegistrationEmailText(Usuario user) {
 		VelocityContext context = new VelocityContext();
 		context.put("nombre_completo", user.getNombre_completo());
+		context.put("documento", user.getDocumento());
 		context.put("hash", user.getPassword());
 		StringWriter stringWriter = new StringWriter();
 		velocityEngine.mergeTemplate("templates/registration-confirmation.vm", "UTF-8", context, stringWriter);

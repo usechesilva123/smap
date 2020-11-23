@@ -7,6 +7,7 @@
 	<style type="text/css">
 		a[x-apple-data-detectors] {color: inherit !important;}
 	</style>
+	
 
 </head>
 <body style="margin: 0; padding: 0;">
@@ -25,12 +26,12 @@
 			<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
 				<tr>
 					<td style="color: #153643; font-family: Arial, sans-serif;">
-						<h1 style="font-size: 24px; margin: 0; color: #ffffff;">Estamos mejorando para ti ${nombre_completo} </h1>
+						<h1 style="font-size: 24px; margin: 0; color: #ffffff;">Hola ${nombre_completo} </h1>
 					</td>
 				</tr>
 				<tr>
 					<td style="color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;">
-						<p style="margin: 0;color: #ffffff;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.</p>
+						<p style="margin: 0;color: #ffffff;">Le damos la bienvenida a nuestra plataforma de PQRS (Peticiones, quejas, reclamos y sugerencias). Acá podrá presentar cualquier tipo de situación que nos quiera comentar, estamos para servirle. </p>
 					</td>
 				</tr>
 				<tr>
@@ -46,7 +47,7 @@
 										</tr>
 										<tr>
 											<td style="color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 25px 0 0 0;">
-												<p style="margin: 0;color: #ffffff;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.</p>
+												<p style="margin: 0;color: #ffffff;">Hemos creado una cuenta para que se pueda loguear en la aplicación móvil utilizando el documento que nos proporcionó de la siguiente manera:</p><br><table><tr><td><p style="margin: 0;color: #ffffff;">Usuario  </p></td><td><p style="margin: 0;color: #ffffff;font-weight: bold;"> ${documento}</p></td></tr><tr><td><p style="margin: 0;color: #ffffff;">Clave</p></td><td><p style="margin: 0;color: #ffffff;font-weight: bold;"> ${hash}</p></td></tr></table>
 											</td>
 										</tr>
 									</table>
@@ -61,7 +62,7 @@
 										</tr>
 										<tr>
 											<td style="color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 25px 0 0 0;">
-												<p style="margin: 0;color: #ffffff;">${hash}  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.</p>
+												<p style="margin: 0;color: #ffffff;">Nuestros funcionarios estarán trabajando en la solicitud que registró y cualquier otra que ingrese en el sistema. El tiempo límite de respuesta es de 4 días hábiles, porfavor no dude en comunicarse con nosotros. supermarket@servicioalcliente.com</p>
 											</td>
 										</tr>
 									</table>

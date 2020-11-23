@@ -37,7 +37,7 @@ public class Radicado implements Serializable{
 	Integer numero_radicado;
 	@Column(nullable = false)
 	Date fecha;
-	@Column(nullable = false)
+	@Column(nullable = false, length = 3000)
 	String comentario;
 	@Column(nullable = false)
 	String anexo;
