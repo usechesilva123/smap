@@ -3,6 +3,7 @@ package edu.co.software.smap.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,8 @@ import edu.co.software.smap.service.UsuarioService;
 
 @RestController
 @RequestMapping(value = "/admin")
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST,
+		RequestMethod.OPTIONS }, allowedHeaders = "*")
 public class AdministradorController {
 
 	@Autowired

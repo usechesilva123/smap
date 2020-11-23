@@ -32,6 +32,8 @@ import java.io.StringWriter;
 import java.util.Date;
 
 @RestController
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST,
+		RequestMethod.OPTIONS }, allowedHeaders = "*")
 public class RadicadoController {
 
 	private static final int PASS_LENGHT = 8;
@@ -79,12 +81,11 @@ public class RadicadoController {
 			@RequestParam("tipo_documento") String tipo_documento) throws Exception {
 
 		Usuario user = usuarioService.findByUser(documento);
-		String pss = PasswordGenerator.generateRandomPassword(PASS_LENGHT);
+
 
 		if(user==null) { 
-			user = new Usuario(nombre_completo, documento, telefono, email, tipo_documento, password, true);
-			pss = PasswordGenerator.generateRandomPassword(PASS_LENGHT);
-			user.setPassword(pss);
+			String pss = PasswordGenerator.generateRandomPassword(PASS_LENGHT);
+			user = new Usuario(nombre_completo, documento, telefono, email, tipo_documento, pss, true);
 
 			MimeMessage message = sender.createMimeMessage();
 
@@ -97,7 +98,7 @@ public class RadicadoController {
 
 			// use the true flag to indicate the text included is HTML
 			helper.setText(text, true);
-			
+
 
 			usuarioService.saveClient(user);
 
