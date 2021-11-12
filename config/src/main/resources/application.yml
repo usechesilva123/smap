@@ -7,6 +7,6 @@ spring:
         git:
           uri: https://github.com/usechesilva123/configuration-ubacademico
           username: usechesilva@hotmail.es
-          password: Legday420
+          password: 
           search-paths:
            - '*service'
